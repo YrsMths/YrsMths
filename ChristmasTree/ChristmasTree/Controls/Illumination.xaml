@@ -1,0 +1,32 @@
+﻿<UserControl x:Name="userControl" x:Class="ChristmasTree.Controls.Illumination"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChristmasTree.Controls"
+             mc:Ignorable="d">
+    <Grid >
+        <Canvas Name="grid">
+            <Path Data="{Binding Ringpathdata, ElementName=userControl, Mode=OneWay}" Fill="{Binding ringbrush, ElementName=userControl}">
+                <Path.Effect>
+                    <BlurEffect Radius="2"/>
+                </Path.Effect>
+                <Path.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation  Storyboard.TargetProperty="Opacity"
+                                     From="1.0" To="0.0" Duration="0:0:1" RepeatBehavior="Forever" AutoReverse="True"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+            <Path x:Name="path" Data="{Binding pathdata, ElementName=userControl, Mode=OneWay}" Fill="{Binding brush, ElementName=userControl}">
+                <Path.Effect>
+                    <BlurEffect Radius="2"/>
+                </Path.Effect>
+            </Path>
+        </Canvas>
+    </Grid>
+</UserControl>
